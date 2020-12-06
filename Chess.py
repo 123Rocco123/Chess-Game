@@ -41,16 +41,30 @@ def movement():
     global chess_board0
 
     piece = input("What piece do you want to move? ").upper()
-    piece0 = input("Where do you want to move that piece to? ").upper()
-
     piece1 = chess_board0.index(piece)
-    piece2 = chess_board0.index(piece0)
 
-    print(piece1, piece2)
-
-    chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
+    if piece == 'P1'or piece =='P2'or piece =='P3'or piece =='P4'or piece =='P5'or piece =='P6'or piece =='P7'or piece =='P8':
+        #Pawn Code for White Team
+        piece0 = input("Where do you want to move that piece to? ").upper()
+        piece2 = chess_board0.index(piece0)
+        if chess_board0[piece2] == chess_board0[piece1 - 8]:
+            chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
+            chess_format(chess_board0)
+        else:
+            print("You can't move there, try again.")
+            movement()
+    elif piece == 'PA'or piece =='PB'or piece =='PC'or piece =='PD'or piece =='PE'or piece =='PF'or piece =='PG'or piece =='PH':
+        #Pawn Code for Black Team
+        piece0 = input("Where do you want to move that piece to? ").upper()
+        piece2 = chess_board0.index(piece0)
+        print(piece1, piece2)
+        if chess_board0[piece2] == chess_board0[piece1 + 8]:
+            chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
+            chess_format(chess_board0)
+        else:
+            print("You can't move there, try again.")
+            movement()
     
-    chess_format(chess_board0)
 
 #print("Welcome to Chess".center(70))
 #print("Game Rules\n\nIf you want to move a piece, then you have to write the letter of that piece when prompted to, and then specifiy the direction you want to go to. ")
