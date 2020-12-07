@@ -3,7 +3,7 @@
 def chess_board1():
     global chess_board0, columb
 
-    chess_board0 = ['T1','H1','B1','K1','Q1','B1','H1','T1', 'PA','PB','PC','PD','PE','PF','PG','PH','W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'WA', 'WB', 'WC', 'WD', 'WE', 'WF', 'WG', 'WH', 'WI', 'WJ', 'WK', 'WL', 'WM', 'WN', 'WO', 'WP', 'WQ', 'WR', 'WS', 'WT', 'WU', 'WV', 'WW', 'WX', 'P1','P2','P3','P4','P5','P6','P7','P8', 'T2','H2','B2','K2','Q2','B2','H2','T2']
+    chess_board0 = ['TA','H1','B1','KA','QA','B1','H1','TB', 'PA','PB','PC','PD','PE','PF','PG','PH','W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'WA', 'WB', 'WC', 'WD', 'WE', 'WF', 'WG', 'WH', 'WI', 'WJ', 'WK', 'WL', 'WM', 'WN', 'WO', 'WP', 'WQ', 'WR', 'WS', 'WT', 'WU', 'WV', 'WW', 'WX', 'P1','P2','P3','P4','P5','P6','P7','P8', 'T1','H1','B2','K1','Q1','B2','H2','T2', " ", " ", " ", " ", " ", " ", " ", " ", " "]
     columb = ["1","2","3","4","5","6","7","8"]
     
     #Blacks
@@ -36,7 +36,6 @@ def chess_format(x):
     print("      ========================")
     print("Column:" +  "  ".join(columb))
 
-
 def movement():
     global chess_board0
 
@@ -64,6 +63,22 @@ def movement():
         else:
             print("You can't move there, try again.")
             movement()
+    elif piece == "T1" or piece == "T2" or piece == "TA" or piece == "TB":
+        piece0 = input("Where do you want to move that piece to? ").upper()
+        piece2 = chess_board0.index(piece0)
+
+        vert = [8,16,24,32,40,48,56,64]
+        horiz = [1,2,3,4,5,6,7]
+        
+        for x in vert:
+            if chess_board0[piece2] == chess_board0[piece1 - x]:
+                chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
+        for x in horiz:
+            if chess_board0[piece2] == chess_board0[piece1 + x]:
+                chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
+            elif chess_board0[piece2] == chess_board0[piece1 - x]:
+                chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
+        chess_format(chess_board0)    
     
 
 #print("Welcome to Chess".center(70))
