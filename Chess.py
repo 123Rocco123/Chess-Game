@@ -3,7 +3,15 @@
 def chess_board1():
     global chess_board0, columb
 
-    chess_board0 = ['TA','H1','B1','KA','QA','B1','H1','TB', 'PA','PB','PC','PD','PE','PF','PG','PH','W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'WA', 'WB', 'WC', 'WD', 'WE', 'WF', 'WG', 'WH', 'WI', 'WJ', 'WK', 'WL', 'WM', 'WN', 'WO', 'WP', 'WQ', 'WR', 'WS', 'WT', 'WU', 'WV', 'WW', 'WX', 'P1','P2','P3','P4','P5','P6','P7','P8', 'T1','H1','B2','K1','Q1','B2','H2','T2', " ", " ", " ", " ", " ", " ", " ", " ", " "]
+    chess_board0 = ['R21','H21','B21','K2','Q2','B22','H22','R22', 
+                    'P21','P22','P23','P24','P25','P26','P27','P28',
+                    'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 
+                    'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 
+                    'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 
+                    'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 
+                    'P11','P12','P13','P14','P15','P16','P17','P18', 
+                    'R11','H11','B12','K11','Q11','B12','H12','R12', 
+                    " ", " ", " ", " ", " ", " ", " ", " ", " "]
     columb = ["1","2","3","4","5","6","7","8"]
     
     #Blacks
@@ -80,6 +88,31 @@ def movement():
                 chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
         chess_format(chess_board0)    
     
+
+class pieceMovement:
+    def rules(self):
+        possible_positions = ["1", "2", "3", "4", "5", "6", "7", "8"]
+        pieces = ["R", "H", "B", "K", "Q"]
+
+        desired_move = input("Where do you want to move the piece to? ")
+        
+        for statuets in pieces: 
+            for numbers in possible_positions:
+                if self.selected_piece == "P" + numbers + numbers:
+                    piece = "P" + str(numbers) + str(numbers)
+                    if desired_move == chess_board0[piece - 8] and chess_board0[piece - 8] == "X":
+                        chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
+                    elif desired_move == (chess_board0[piece - 7] and chess_board0[piece - 7] != "X" and chess_board0[piece - 7] != pieces + "1" + numbers) or (chess_board0[piece - 9] and chess_board0[piece - 9] != "X" and chess_board0[piece - 9] != pieces + "1" + numbers):
+                        chess_board0[self.selected_piece], chess_board0[desired_move] = chess_board0[desired_move], chess_board0[self.selected_piece]
+                        chess_board0[desired_move] = "X"
+
+    def move(self):
+        selected_piece = input("What piece do you want to move?")
+
+        for x in chess_board0:
+            if selected_piece == x:
+                desired_move = input("Where do you want to move it to?")
+
 
 #print("Welcome to Chess".center(70))
 #print("Game Rules\n\nIf you want to move a piece, then you have to write the letter of that piece when prompted to, and then specifiy the direction you want to go to. ")
