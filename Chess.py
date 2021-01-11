@@ -91,6 +91,7 @@ def movement():
 
 class pieceMovement:
     def rules(self):
+        teams = ["1", "2"]
         possible_positions = ["1", "2", "3", "4", "5", "6", "7", "8"]
         pieces = ["R", "H", "B", "K", "Q"]
 
@@ -98,13 +99,27 @@ class pieceMovement:
         
         for statuets in pieces: 
             for numbers in possible_positions:
-                if self.selected_piece == "P" + numbers + numbers:
-                    piece = "P" + str(numbers) + str(numbers)
-                    if desired_move == chess_board0[piece - 8] and chess_board0[piece - 8] == "X":
-                        chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
-                    elif desired_move == (chess_board0[piece - 7] and chess_board0[piece - 7] != "X" and chess_board0[piece - 7] != pieces + "1" + numbers) or (chess_board0[piece - 9] and chess_board0[piece - 9] != "X" and chess_board0[piece - 9] != pieces + "1" + numbers):
-                        chess_board0[self.selected_piece], chess_board0[desired_move] = chess_board0[desired_move], chess_board0[self.selected_piece]
-                        chess_board0[desired_move] = "X"
+                for team in teams:
+                    if self.selected_piece == "P" + team + numbers:
+                        piece = "P" + team + numbers
+                        if desired_move == chess_board0[piece - 8] and chess_board0[piece - 8] == "X":
+                            chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
+
+                        elif desired_move == (chess_board0[piece - 7] and chess_board0[piece - 7] != "X" and chess_board0[piece - 7] != pieces + "1" + numbers) or (chess_board0[piece - 9] and chess_board0[piece - 9] != "X" and chess_board0[piece - 9] != pieces + "1" + numbers):
+                            chess_board0[self.selected_piece], chess_board0[desired_move] = chess_board0[desired_move], chess_board0[self.selected_piece]
+                            chess_board0[desired_move] = "X"
+
+                    elif self.selected_piece == "R" + team + numbers:
+                        piece = "R" + team + numbers
+                        if desired_move == chess_board0[piece * numbers] and chess_board0[piece * numbers] == "X":
+                            chess_board0[self.selected_piece], chess_board0[desired_move] = chess_board0[desired_move], chess_board0[self.selected_piece]
+                        
+                        elif desired_move  == (chess_board0[piece + numbers] and chess_board0[piece + numbers] == "X" ) or (chess_board0[piece - numbers] and chess_board0[piece - numbers] == "X" ):
+                            chess_board0[self.selected_piece], chess_board0[desired_move] = chess_board0[desired_move], chess_board0[self.selected_piece]
+                        
+                        elif desired_move == chess_board0[piece * numbers] and chess_board0[piece * numbers] != "X" and chess_board0[piece * numbers] != pieces + "1" + numbers:
+                            chess_board0[self.selected_piece], chess_board0[desired_move] = chess_board0[desired_move], chess_board0[self.selected_piece]
+                            chess_board0[desired_move] = "X"
 
     def move(self):
         selected_piece = input("What piece do you want to move?")
