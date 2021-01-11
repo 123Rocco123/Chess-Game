@@ -109,6 +109,8 @@ class pieceMovement:
                             chess_board0[self.selected_piece], chess_board0[desired_move] = chess_board0[desired_move], chess_board0[self.selected_piece]
                             chess_board0[desired_move] = "X"
 
+                    #This if statement is used to determine where the rook (tower) is allowed to move on the chess board.
+                        #Both the vertical and horizontal movements are seperate from one another to make sure that the chances of an error occuring are decreased. 
                     elif self.selected_piece == "R" + team + numbers:
                         piece = "R" + team + numbers
                         if desired_move == chess_board0[piece * numbers] and chess_board0[piece * numbers] == "X":
@@ -117,7 +119,13 @@ class pieceMovement:
                         elif desired_move  == (chess_board0[piece + numbers] and chess_board0[piece + numbers] == "X" ) or (chess_board0[piece - numbers] and chess_board0[piece - numbers] == "X" ):
                             chess_board0[self.selected_piece], chess_board0[desired_move] = chess_board0[desired_move], chess_board0[self.selected_piece]
                         
+                        #This else if statement is to specify how a rook can take another piece from the other team in a vertical plane. 
                         elif desired_move == chess_board0[piece * numbers] and chess_board0[piece * numbers] != "X" and chess_board0[piece * numbers] != pieces + "1" + numbers:
+                            chess_board0[self.selected_piece], chess_board0[desired_move] = chess_board0[desired_move], chess_board0[self.selected_piece]
+                            chess_board0[desired_move] = "X"
+                        
+                        #This else if statement is to specify how a rook can take another piece from the other team in a horizontal plane. 
+                        elif desired_move == ((chess_board0[piece + numbers] and chess_board0[piece + numbers] == "X" ) or (chess_board0[piece - numbers] and chess_board0[piece - numbers] == "X" )) and chess_board0[piece * numbers] != pieces + "1" + numbers:
                             chess_board0[self.selected_piece], chess_board0[desired_move] = chess_board0[desired_move], chess_board0[self.selected_piece]
                             chess_board0[desired_move] = "X"
 
@@ -126,7 +134,7 @@ class pieceMovement:
 
         for x in chess_board0:
             if selected_piece == x:
-                desired_move = input("Where do you want to move it to?")
+                self.rules()
 
 
 #print("Welcome to Chess".center(70))
