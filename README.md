@@ -13,3 +13,6 @@ Enjoy.
 
 ## Completed Goals
 1) Chess Board
+2) Current Movement Functionality
+   - Pawn Movement functionality has been completed. 
+   - Rook Movement functionality has been completed. 
