@@ -10,9 +10,13 @@ Enjoy.
 2) Adding a simple algorithm which will be used as an Artifiical Intelligence that the player can play against. 
    - The algorithm should eventually be able to include different difficulties for the player to choose to play against.
 3) Add more comments to the code to make sure that each line is accounted or, and is easy to understand. 
+4) Simplifying the code.
+   - Meaning, reducing the amount of code in the file so as to make sure that it's easy to understand and navigate.
+      - All repeated code should be placed in fuctions, so as to make it easier to be reused, without having to re-write each time that its needed. 
 
 ## Completed Goals
 1) Chess Board
 2) Current Movement Functionality
    - Pawn Movement functionality has been completed. 
    - Rook Movement functionality has been completed. 
+   - Knight Movement functionality has been completed. 
