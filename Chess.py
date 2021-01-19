@@ -45,6 +45,33 @@ def chess_format(x):
     print("Column:" +  "  ".join(columb))    
 
 class pieceMovement:
+
+    #This function is used to determine if there is a chess piece infront of the one that you want to move, and if the move that you want to do interfers. 
+        #Pawns weren't included because they have a fixed movement, where they can only move one step in front of them, and when defining the movement for the pawn, the if condition specifies that the space has to be empty. 
+        #Knights were also not included because of the fact that they're able to jump over friendly pieces, meaning that as long as the final destination is free, they're allowed to move there. 
+    def team_kill(self, piece_type, direction, additional_movement):
+        piece_dic = {"Rook" : [8,1,-1,-8],
+                     "Bishop" : [9, 7, -9, -7],
+                     "King" : [1, 7, 8, 9, -1, -7, -8, -9],
+                     "Queen" : [1, 7, 8, 9, -1, -8, -7, -9]
+                     }
+
+        for chess_pieces in piece_dic:
+            if piece_type == chess_pieces and piece_type != "Pawn":
+                numbers_cycle = len(pieces_dic[chess_pieces]) / 2
+                
+                if direction == "positive":
+                    for spaces in piece_dic[chess_pieces[0:numbers_cycle]]:
+                        if additional_movement == spaces:
+                            if chess_board0[self.desired_move] == self.pieces + "1" + self.numbers:
+                                print("Invalid move, there is a piece from your that's blocking you.")
+
+                elif direction == "negative":
+                    for spaces in piece_dic[chess_pieces[numbers_cycle:]]:
+                        if additional_movement == spaces:
+                            if chess_board0[self.desired_move] == self.pieces + "1" + self.numbers:
+                                print("Invalid move, there is a piece from your that's blocking you.")
+
     #This function is used to specify the movement of the pieces on the board. 
     def rules_movement(self, piece, numbers, vert1, vert2, horiz1, horiz2):
         #The if statement below is used to determine how the vertical movements of the piece, both in the positive (down) and negative (up) directions. 
