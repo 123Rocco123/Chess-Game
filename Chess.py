@@ -209,6 +209,7 @@ class pieceMovement:
                         future_move = chess_board0[piece]
                         diagonal_multiples = [1,2,3,4,5,6,7]
 
+                        #The following if and if else statements are used to determine how the movement of the bishop is to be defined when the spot that the player wants to move it to is free.
                         for numbers in diagonal_multiples:
                             if desired_move[future_move + (9 * numbers)] and desired_move[future_move + (9 * numbers)] == "X":
                                 switch
@@ -219,6 +220,9 @@ class pieceMovement:
                             elif desired_move[future_move - (7 * numbers)] and desired_move[future_move - (7 * numbers)] == "X":
                                 switch
 
+                            #This set of else if statements are used to determine the movement of the bishop when it can take a piece from the other team. 
+                                #Because of the unique movement restrictions of the bishop, the extra for loops that were used for the towers and knights aren't necessary.
+                                #This is due to the fact that they can only move in an X, as well as being stuck to one tile color rather than being able to move to every square on the board. 
                             elif desired_move[future_move + (9 * numbers)] and desired_move[future_move + (9 * numbers)] != "X" and desired_move[future_move + (9 * numbers)] != pieces + "1" + numbers:
                                 switch
                                 chess_board0[desired_move] = "X"
