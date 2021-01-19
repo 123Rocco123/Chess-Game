@@ -42,52 +42,7 @@ def chess_format(x):
     print("    2|", " ".join(x[48:56]))
     print("    1|", " ".join(x[56:64]))
     print("      ========================")
-    print("Column:" +  "  ".join(columb))
-
-def movement():
-    global chess_board0
-
-    piece = input("What piece do you want to move? ").upper()
-    piece1 = chess_board0.index(piece)
-
-    if piece == 'P1'or piece =='P2'or piece =='P3'or piece =='P4'or piece =='P5'or piece =='P6'or piece =='P7'or piece =='P8':
-        #Pawn Code for White Team
-        piece0 = input("Where do you want to move that piece to? ").upper()
-        piece2 = chess_board0.index(piece0)
-        if chess_board0[piece2] == chess_board0[piece1 - 8]:
-            chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
-            chess_format(chess_board0)
-        else:
-            print("You can't move there, try again.")
-            movement()
-    elif piece == 'PA'or piece =='PB'or piece =='PC'or piece =='PD'or piece =='PE'or piece =='PF'or piece =='PG'or piece =='PH':
-        #Pawn Code for Black Team
-        piece0 = input("Where do you want to move that piece to? ").upper()
-        piece2 = chess_board0.index(piece0)
-        print(piece1, piece2)
-        if chess_board0[piece2] == chess_board0[piece1 + 8]:
-            chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
-            chess_format(chess_board0)
-        else:
-            print("You can't move there, try again.")
-            movement()
-    elif piece == "T1" or piece == "T2" or piece == "TA" or piece == "TB":
-        piece0 = input("Where do you want to move that piece to? ").upper()
-        piece2 = chess_board0.index(piece0)
-
-        vert = [8,16,24,32,40,48,56,64]
-        horiz = [1,2,3,4,5,6,7]
-        
-        for x in vert:
-            if chess_board0[piece2] == chess_board0[piece1 - x]:
-                chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
-        for x in horiz:
-            if chess_board0[piece2] == chess_board0[piece1 + x]:
-                chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
-            elif chess_board0[piece2] == chess_board0[piece1 - x]:
-                chess_board0[piece1], chess_board0[piece2] = chess_board0[piece2], chess_board0[piece1]
-        chess_format(chess_board0)    
-    
+    print("Column:" +  "  ".join(columb))    
 
 class pieceMovement:
     #This function is used to specify the movement of the pieces on the board. 
@@ -199,7 +154,7 @@ class pieceMovement:
                     elif self.selected_piece == "R" + team + numbers:
                         piece = "R" + team + numbers
                         same = True
-                        
+
                         if desired_move == chess_board0[piece * numbers] and chess_board0[piece * numbers] == "X":
                             switch
                         
@@ -246,6 +201,37 @@ class pieceMovement:
                         same = False
 
                         rules_movement(self, piece, numbers, 17, 15, 10, 6)
+                    
+                    #This else if statement is uesd to determine how the bishop is supposed to move. 
+                    elif self.selected_piece == "B" + team + numbers:
+                        piece = "B" + team + numbers
+
+                        future_move = chess_board0[piece]
+                        diagonal_multiples = [1,2,3,4,5,6,7]
+
+                        for numbers in diagonal_multiples:
+                            if desired_move[future_move + (9 * numbers)] and desired_move[future_move + (9 * numbers)] == "X":
+                                switch
+                            elif desired_move[future_move - (9 * numbers)] and desired_move[future_move - (9 * numbers)] == "X":
+                                switch
+                            elif desired_move[future_move + (7 * numbers)] and desired_move[future_move + (7 * numbers)] == "X":
+                                switch
+                            elif desired_move[future_move - (7 * numbers)] and desired_move[future_move - (7 * numbers)] == "X":
+                                switch
+
+                            elif desired_move[future_move + (9 * numbers)] and desired_move[future_move + (9 * numbers)] != "X" and desired_move[future_move + (9 * numbers)] != pieces + "1" + numbers:
+                                switch
+                                chess_board0[desired_move] = "X"
+                            elif desired_move[future_move - (9 * numbers)] and desired_move[future_move - (9 * numbers)] != "X" and desired_move[future_move - (9 * numbers)] != pieces + "1" + numbers:
+                                switch
+                                chess_board0[desired_move] = "X"
+                            elif desired_move[future_move + (7 * numbers)] and desired_move[future_move + (7 * numbers)] != "X" and desired_move[future_move + (7 * numbers)] != pieces + "1" + numbers:
+                                switch
+                                chess_board0[desired_move] = "X"
+                            elif desired_move[future_move - (7 * numbers)] and desired_move[future_move - (7 * numbers)] != "X" and desired_move[future_move - (7 * numbers)] != pieces + "1" + numbers:
+                                switch
+                                chess_board0[desired_move] = "X"
+
     def move(self):
         selected_piece = input("What piece do you want to move?")
 
