@@ -69,6 +69,28 @@ class pieceMovement:
             self.switch
             chess_board0[self.desired_position] = "X"
 
+    def queen_move(self, position, negative_position, side, multiples):
+        #This series of else if statemetns is used to determine the positive movement of the king piece. 
+        if self.desired_move == chess_board0[chess_board0[self.piece] + position * multiples] and chess_board0[chess_board0[self.piece] + position * multiples] == "X":
+            self.switch
+        elif self.desired_move == chess_board0[chess_board0[self.piece] + position * multiples] and chess_board0[chess_board0[self.piece] + position * multiples] != "X" and chess_board0[chess_board0[self.piece] + position * multiples] == self.pieces + self.team:
+            self.switch
+            chess_board0[self.desired_position] = "X"
+        
+        #This series of else if statements is used to determine the negative movement of the king piece.
+        elif self.desired_move == chess_board0[chess_board0[self.piece] + negative_position * multiples] and chess_board0[chess_board0[self.piece] + negative_position * multiples] == "X":
+            self.switch
+        elif self.desired_move == chess_board0[chess_board0[self.piece] + negative_position * multiples] and chess_board0[chess_board0[self.piece] + negative_position * multiples] != "X" and chess_board0[chess_board0[self.piece] + negative_position * multiples] == self.pieces + self.team:
+            self.switch
+            chess_board0[self.desired_position] = "X"
+
+        #This series of else if statements is used to determine the lateral movement of the king piece. 
+        elif self.desired_move == chess_board0[chess_board0[self.piece] + side * multiples] and chess_board0[chess_board0[self.piece] + side * multiples] == "X":
+            self.switch
+        elif self.desired_move == chess_board0[chess_board0[self.piece] + side * multiples] and chess_board0[chess_board0[self.piece] + side * multiples] != "X" and chess_board0[chess_board0[self.piece] + side * multiples] == self.pieces + self.team:
+            self.switch
+            chess_board0[self.desired_position] = "X"
+
     #This function is used to determine if there is a chess piece infront of the one that you want to move, and if the move that you want to do interfers. 
         #Pawns weren't included because they have a fixed movement, where they can only move one step in front of them, and when defining the movement for the pawn, the if condition specifies that the space has to be empty. 
         #Knights were also not included because of the fact that they're able to jump over friendly pieces, meaning that as long as the final destination is free, they're allowed to move there. 
@@ -297,7 +319,24 @@ class pieceMovement:
                         for positive_nums in positive:
                             for negative_nums in negative:
                                 for side_move in side_to_side:
-                                    king_move(self, positive_nums, negative_nums, side_move)
+                                    self.king_move(positive_nums, negative_nums, side_move)
+
+                    #This else if statemetn is used to determine the movement of the queen piece. 
+                    elif self.selected_piece == "Q" + team:
+                        piece = "Q" + team
+
+                        positive = [7,8,9]
+                        negative = [-7,-8,-9]
+                        side_to_side = [-1,1]
+
+                        multiples = [1,2,3,4,5,6,7,8]
+
+                        for positive_nums in positive:
+                            for negative_nums in negative:
+                                for side_move in side_to_side:
+                                    for multipliers in multiples:
+                                        self.queen_move(positve,nums, negative_nums, side_move, multipliers)
+
 
     def move(self):
         selected_piece = input("What piece do you want to move?")
