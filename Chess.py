@@ -52,6 +52,8 @@ class pieceMovement:
             self.switch
             chess_board0[self.desired_position] = "X"
 
+    #This function is used to determine the movement of the queen piece. 
+        #The code is identical to the king with the difference being that there is a new argument that the function takes into consideration. 
     def queen_move(self, position, negative_position, side, multiples):
         #This series of else if statemetns is used to determine the positive movement of the king piece. 
         if self.desired_move == chess_board0[chess_board0[self.piece] + position * multiples] and chess_board0[chess_board0[self.piece] + position * multiples] == "X":
@@ -84,6 +86,8 @@ class pieceMovement:
                      "Queen" : [1, 7, 8, 9, -1, -8, -7, -9]
                      }
 
+        side_to_side = [-1, 1]
+
         for chess_pieces in piece_dic:
             if piece_type == chess_pieces and piece_type != "Pawn":
                 numbers_cycle = len(piece_dic[chess_pieces]) / 2
@@ -91,6 +95,8 @@ class pieceMovement:
                 if direction == "positive":
                     for spaces in piece_dic[chess_pieces[0:numbers_cycle]]:
                         if additional_movement == spaces:
+                            #The additional movement is here to determine the first square of the direction of the piece. 
+                                #Without it, the code would look to see if any pieces that were near the chosen piece were on the same team, and throw up the error below. 
                             if chess_board0[self.desired_move] == self.pieces + "1" + self.numbers:
                                 print("Invalid move, there is a piece from your that's blocking you.")
 
@@ -98,6 +104,11 @@ class pieceMovement:
                     for spaces in piece_dic[chess_pieces[numbers_cycle:]]:
                         if additional_movement == spaces:
                             if chess_board0[self.desired_move] == self.pieces + "1" + self.numbers:
+                                print("Invalid move, there is a piece from your that's blocking you.")
+                elif direction == "horizontal":
+                    for spaces in side_to_side:
+                        if additional_movement == spaces:
+                            if chess_board0[chess_baord0[self.piece] + spaces] == self.pieces + "1" + self.numbers:
                                 print("Invalid move, there is a piece from your that's blocking you.")
 
     #This function is used to specify the movement of the pieces on the board. 
@@ -300,6 +311,7 @@ class pieceMovement:
                         negative = [-7,-8,-9]
                         side_to_side = [-1,1]
 
+                        #The following for loops are used to cycle through all of the data in the lists above to allow the correct movement of the king to occur. 
                         for positive_nums in positive:
                             for negative_nums in negative:
                                 for side_move in side_to_side:
@@ -315,12 +327,13 @@ class pieceMovement:
 
                         multiples = [1,2,3,4,5,6,7,8]
 
+                        #The difference between the Queen piece and the King piece is that there is another for loop for the queen piece.
+                            #The extra for loop is used to multiply the numbers so as to allow the piece to move the length of the board in one move. 
                         for positive_nums in positive:
                             for negative_nums in negative:
                                 for side_move in side_to_side:
                                     for multipliers in multiples:
                                         self.queen_move(positve,nums, negative_nums, side_move, multipliers)
-
 
     def move(self):
         selected_piece = input("What piece do you want to move?")
