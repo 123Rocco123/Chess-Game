@@ -31,3 +31,5 @@ Enjoy.
    - If there isn't, then nothing happens. 
 5) Finishing the movement functionality of all pieces on the chess board.
    - The movement for each piece has been completed and added to the code.
+6) Debugging
+   - Fixed the "desired_choice" to "self.desired_choice".
