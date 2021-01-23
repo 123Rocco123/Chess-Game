@@ -13,9 +13,7 @@ Enjoy.
 4) Simplifying the code.
    - Meaning, reducing the amount of code in the file so as to make sure that it's easy to understand and navigate.
       - All repeated code should be placed in fuctions, so as to make it easier to be reused, without having to re-write each time that its needed. 
-5) Add a fucntion in the class which is used to determine if there is a piece in front of you (which is from your own team).
-   - If there is, a message has to come up telling the player that they're not allowed to move there.
-   - If there isn't, then nothing happens. 
+
 
 ## Completed Goals
 1) Chess Board
@@ -25,3 +23,6 @@ Enjoy.
    - Knight Movement functionality has been completed. 
 3) Simplyifying code
    - Repeated code has been placed in a function which can now be used to remove the necessity of copying it, and pasting it 10 times over in the program. 
+4) Add a fucntion in the class which is used to determine if there is a piece in front of you (which is from your own team).
+   - If there is, a message has to come up telling the player that they're not allowed to move there.
+   - If there isn't, then nothing happens. 
