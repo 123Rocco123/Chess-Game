@@ -15,7 +15,8 @@ Enjoy.
 4) Debugging the movement of the pieces. 
    - Test the game to see if the movement of the pieces works as it should. 
    - Implament the "nearby system" to each movement of the pieces. 
-
+5) Merge the Queen and King functions with one another. 
+   - Make sure to merge the code for the queen and king functions into one so as to increase code simplicity. 
 
 ## Completed Goals
 1) Chess Board
