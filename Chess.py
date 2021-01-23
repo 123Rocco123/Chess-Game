@@ -46,6 +46,29 @@ def chess_format(x):
 
 class pieceMovement:
 
+    #This function is used to determine how the movement of the king is determined. 
+    def king_move(self, position, negative_position, side):
+        #This series of else if statemetns is used to determine the positive movement of the king piece. 
+        if self.desired_move == chess_board0[chess_board0[self.piece] + position] and chess_board0[chess_board0[self.piece] + position] == "X":
+            self.switch
+        elif self.desired_move == chess_board0[chess_board0[self.piece] + position] and chess_board0[chess_board0[self.piece] + position] != "X" and chess_board0[chess_board0[self.piece] + position] == self.pieces + self.team:
+            self.switch
+            chess_board0[self.desired_position] = "X"
+        
+        #This series of else if statements is used to determine the negative movement of the king piece.
+        elif self.desired_move == chess_board0[chess_board0[self.piece] + negative_position] and chess_board0[chess_board0[self.piece] + negative_position] == "X":
+            self.switch
+        elif self.desired_move == chess_board0[chess_board0[self.piece] + negative_position] and chess_board0[chess_board0[self.piece] + negative_position] != "X" and chess_board0[chess_board0[self.piece] + negative_position] == self.pieces + self.team:
+            self.switch
+            chess_board0[self.desired_position] = "X"
+
+        #This series of else if statements is used to determine the lateral movement of the king piece. 
+        elif self.desired_move == chess_board0[chess_board0[self.piece] + side] and chess_board0[chess_board0[self.piece] + side] == "X":
+            self.switch
+        elif self.desired_move == chess_board0[chess_board0[self.piece] + side] and chess_board0[chess_board0[self.piece] + side] != "X" and chess_board0[chess_board0[self.piece] + side] == self.pieces + self.team:
+            self.switch
+            chess_board0[self.desired_position] = "X"
+
     #This function is used to determine if there is a chess piece infront of the one that you want to move, and if the move that you want to do interfers. 
         #Pawns weren't included because they have a fixed movement, where they can only move one step in front of them, and when defining the movement for the pawn, the if condition specifies that the space has to be empty. 
         #Knights were also not included because of the fact that they're able to jump over friendly pieces, meaning that as long as the final destination is free, they're allowed to move there. 
@@ -262,6 +285,19 @@ class pieceMovement:
                             elif desired_move[future_move - (7 * numbers)] and desired_move[future_move - (7 * numbers)] != "X" and desired_move[future_move - (7 * numbers)] != pieces + "1" + numbers:
                                 switch
                                 chess_board0[desired_move] = "X"
+
+                    #This else if statement is used to determine the movement of the king piece. 
+                    elif self.selected_piece == "K" + team:
+                        piece = "K" + team
+
+                        positive = [7,8,9]
+                        negative = [-7,-8,-9]
+                        side_to_side = [-1,1]
+
+                        for positive_nums in positive:
+                            for negative_nums in negative:
+                                for side_move in side_to_side:
+                                    king_move(self, positive_nums, negative_nums, side_move)
 
     def move(self):
         selected_piece = input("What piece do you want to move?")
