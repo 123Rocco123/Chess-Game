@@ -1,19 +1,17 @@
 #Chess Game
-#Tower = T, Horse = H, Bishop = B, King = K, Queen = Q, Pawn = P
-def chess_board1():
-    global chess_board0, columb
 
-    chess_board0 = ['R21','K21','B21','K2','Q2','B22','K22','R22', 
-                    'P21','P22','P23','P24','P25','P26','P27','P28',
-                    'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 
-                    'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 
-                    'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 
-                    'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 
-                    'P11','P12','P13','P14','P15','P16','P17','P18', 
-                    'R11','K11','B12','K1','Q11','B12','K12','R12', 
-                    " ", " ", " ", " ", " ", " ", " ", " ", " "]
-    columb = ["1","2","3","4","5","6","7","8"]
-    
+chess_board0 = ['R21','K21','B21','K2','Q2','B22','K22','R22', 
+                'P21','P22','P23','P24','P25','P26','P27','P28',
+                'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 
+                'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 
+                'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 
+                'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 
+                'P11','P12','P13','P14','P15','P16','P17','P18', 
+                'R11','K11','B12','K1','Q11','B12','K12','R12', 
+                " ", " ", " ", " ", " ", " ", " ", " ", " "]
+columb = ["1","2","3","4","5","6","7","8"]
+
+def chess_print():    
     #Blacks
     print("Row:8|", " ".join(chess_board0[0:8]))
     print("    7|", " ".join(chess_board0[8:16]))
@@ -28,21 +26,6 @@ def chess_board1():
     print("      ========================")
     print("Column:" +  "  ".join(columb))
 
-def chess_format(x):
-    global columb
-
-    print("Row:8|", " ".join(x[0:8]))
-    print("    7|", " ".join(x[8:16]))
-    #White Space
-    print("    6|", " ".join(x[16:24]))
-    print("    5|", " ".join(x[24:32]))
-    print("    4|", " ".join(x[32:40]))
-    print("    3|", " ".join(x[40:48]))
-    #Whites
-    print("    2|", " ".join(x[48:56]))
-    print("    1|", " ".join(x[56:64]))
-    print("      ========================")
-    print("Column:" +  "  ".join(columb))    
 
 class pieceMovement:
 
@@ -103,7 +86,7 @@ class pieceMovement:
 
         for chess_pieces in piece_dic:
             if piece_type == chess_pieces and piece_type != "Pawn":
-                numbers_cycle = len(pieces_dic[chess_pieces]) / 2
+                numbers_cycle = len(piece_dic[chess_pieces]) / 2
                 
                 if direction == "positive":
                     for spaces in piece_dic[chess_pieces[0:numbers_cycle]]:
@@ -205,6 +188,7 @@ class pieceMovement:
                 "8" : [56,57,58,59,60,61,62,63]
                 }
 
+        #This variable is used to determine what the player wants to do
         desired_move = input("Where do you want to move the piece to? ")
         
         switch = chess_board0[self.selected_piece], chess_board0[desired_move] = chess_board0[desired_move], chess_board0[self.selected_piece]
@@ -348,6 +332,6 @@ class pieceMovement:
 #print("Welcome to Chess".center(70))
 #print("Game Rules\n\nIf you want to move a piece, then you have to write the letter of that piece when prompted to, and then specifiy the direction you want to go to. ")
 
-chess_board1()
+chess_print()
 for x in range(3):
     movement()
