@@ -6,13 +6,15 @@ The code is all my own.
 Enjoy.
 
 ## Project Goals
-1) Finishing the movement functionality of all pieces on the chess board.
-2) Adding a simple algorithm which will be used as an Artifiical Intelligence that the player can play against. 
+1) Adding a simple algorithm which will be used as an Artifiical Intelligence that the player can play against. 
    - The algorithm should eventually be able to include different difficulties for the player to choose to play against.
-3) Add more comments to the code to make sure that each line is accounted or, and is easy to understand. 
-4) Simplifying the code.
+2) Add more comments to the code to make sure that each line is accounted or, and is easy to understand. 
+3) Simplifying the code.
    - Meaning, reducing the amount of code in the file so as to make sure that it's easy to understand and navigate.
       - All repeated code should be placed in fuctions, so as to make it easier to be reused, without having to re-write each time that its needed. 
+4) Debugging the movement of the pieces. 
+   - Test the game to see if the movement of the pieces works as it should. 
+   - Implament the "nearby system" to each movement of the pieces. 
 
 
 ## Completed Goals
@@ -26,3 +28,5 @@ Enjoy.
 4) Add a fucntion in the class which is used to determine if there is a piece in front of you (which is from your own team).
    - If there is, a message has to come up telling the player that they're not allowed to move there.
    - If there isn't, then nothing happens. 
+5) Finishing the movement functionality of all pieces on the chess board.
+   - The movement for each piece has been completed and added to the code.
