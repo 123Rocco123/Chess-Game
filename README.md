@@ -33,3 +33,5 @@ Enjoy.
    - The movement for each piece has been completed and added to the code.
 6) Debugging
    - Fixed the "desired_choice" to "self.desired_choice".
+   - Fixed more "self.".
+   - Fixed "queen_move" call error. 
