@@ -89,7 +89,7 @@ class pieceMovement:
         side_to_side = [-1, 1]
 
         for chess_pieces in piece_dic:
-            if piece_type == chess_pieces and piece_type != "Pawn":
+            if piece_type == chess_pieces:
                 numbers_cycle = len(piece_dic[chess_pieces]) / 2
                 
                 if direction == "positive":
@@ -99,17 +99,25 @@ class pieceMovement:
                                 #Without it, the code would look to see if any pieces that were near the chosen piece were on the same team, and throw up the error below. 
                             if chess_board0[self.desired_move] == self.pieces + "1" + self.numbers:
                                 print("Invalid move, there is a piece from your that's blocking you.")
+                                self.rules()
 
                 elif direction == "negative":
                     for spaces in piece_dic[chess_pieces[numbers_cycle:]]:
                         if additional_movement == spaces:
                             if chess_board0[self.desired_move] == self.pieces + "1" + self.numbers:
                                 print("Invalid move, there is a piece from your that's blocking you.")
+                                self.rules()
+
                 elif direction == "horizontal":
                     for spaces in side_to_side:
                         if additional_movement == spaces:
                             if chess_board0[chess_board0[self.piece] + spaces] == self.pieces + "1" + self.numbers:
                                 print("Invalid move, there is a piece from your that's blocking you.")
+                                self.rules()
+
+                else:
+                    #The reason that we use pass here is because of the fact that if none of the conditions are met, then we want nothing to happen, and the code to continue off as it should. 
+                    self.switch
 
     #This function is used to specify the movement of the pieces on the board. 
     def rules_movement(self, piece, numbers, vert1, vert2, horiz1, horiz2):
@@ -222,8 +230,13 @@ class pieceMovement:
                         piece = "R" + team + numbers
                         same = True
 
-                        if self.desired_move == chess_board0[piece * numbers] and chess_board0[piece * numbers] == "X":
-                            switch
+                        #This if statement is used to determine if the desired place that you want to move your piece to is free or not.
+                            #It is important to note here that this if statemetn is only used to move the piece in a vertical direction on the board. 
+                        if self.desired_move == chess_board0[piece + (8 * numbers)] and chess_board0[piece + (8 * numbers)] == "X":
+                            if chess_board0[desired_move] % 8 == 0: 
+                                self.team_kill("Rook", "positive", 8)
+                            elif chess_board0[desired_move] > 1 and chess_board0[desired_move] < 8:
+                                self.team_kill("Rook", "positive", 1)
                         
                         #This else if statement is used to determine how the piece is allowed to move from one place to another on the same row.
                             #What is important to note here is that the reason that this else if statement is much longer than the rest is because it has to specify that the switch can only occur for elements in the same row. 
