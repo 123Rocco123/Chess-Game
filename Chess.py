@@ -29,6 +29,24 @@ def chess_print():
 
 class pieceMovement:
 
+    #This function will be used to determine which piece to move, and where to move it to.
+    def call_func(self):
+        piece_to_move = input("What piece do you want to move (LetterNumber)? ")
+
+        desired_move = input(f"Where do you want to move {piece_to_move} to (Same Format)? ")
+
+        #The following will be used as a verification step where we check to see if the position that the user inputed is correct or not. 
+        for positions in chess_board0:
+            if positions == chess_board0[piece_to_move]:
+                pass
+            else:
+                ticker += 1
+
+        if ticker == len(chess_board0):
+            print("Your move is invalid.")
+        else:
+            pass
+
     #This function is used to determine how the movement of the king is determined. 
     def king_move(self, position, negative_position, side):
         #This series of else if statemetns is used to determine the positive movement of the king piece. 
@@ -207,8 +225,8 @@ class pieceMovement:
                 "8" : [56,57,58,59,60,61,62,63]
                 }
 
-        #This variable is used to determine what the player wants to do
-        desired_move = input("Where do you want to move the piece to? ")
+        #This function call is used to ask the player what piece they want to move, and where they want to move it to. 
+        self.call_func()
         
         switch = chess_board0[self.selected_piece], chess_board0[self.desired_move] = chess_board0[self.desired_move], chess_board0[self.selected_piece]
 
@@ -360,4 +378,5 @@ class pieceMovement:
 
 chess_print()
 for x in range(3):
-    movement()
+    initiate = pieceMovement()
+    initiate.rules()
